@@ -92,8 +92,8 @@ Arena_allocate_aligned(Arena* arena, size_t size, size_t align)
     }
 
     // power of 2 alignment
-    uintptr_t new_offset = arena->_offset + size;
-    if (!is_power_of_two(new_offset)) {
+    uintptr_t new_offset = arena->_offset;
+    if (new_offset > 0 && !is_power_of_two(new_offset)) {
         uintptr_t p, a, modulo;
 
         assert(is_power_of_two(align));
